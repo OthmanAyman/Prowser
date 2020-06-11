@@ -26,6 +26,7 @@ def get_html(url):
 
 
 frame.set_content(get_html("https://www.google.com/"))
+#frame.set_content("<h1>Hello World</h1>")
 
 
 
