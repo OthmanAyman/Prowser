@@ -1,18 +1,35 @@
 
-
 import socket 
 
-mysock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-mysock.connect(('google.com', 80))
-cmd = 'GET http://www.google.com HTTP/1.0\r\n\r\n'.encode()
-mysock.send(cmd)
+
+import urllib.request
+try:
+    import tkinter as tk
+except ImportError:
+    import Tkinter as tk
+
+from tkinterhtml import HtmlFrame
+
+root = tk.Tk()
+
+frame = HtmlFrame(root, horizontal_scrollbar="auto")
+frame.grid(sticky=tk.NSEW)
 
 
-while True:
-    data = mysock.recv(512)
-    if len(data) < 1:
-        break
-    print(data.decode(), end=' ')
+
+def get_html(url):
+    """Grab html code of a page given its URL"""
+    usock = urllib.request.urlopen(url)
+    html = usock.read()
+    usock.close()
+    return html
 
 
+frame.set_content(get_html("https://www.google.com/"))
+
+
+
+root.columnconfigure(0, weight=1)
+root.rowconfigure(0, weight=1)
+root.mainloop()
 
