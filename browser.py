@@ -30,6 +30,7 @@ frame.set_content(get_html("https://www.google.com/"))
 
 
 
+
 root.columnconfigure(0, weight=1)
 root.rowconfigure(0, weight=1)
 root.mainloop()
